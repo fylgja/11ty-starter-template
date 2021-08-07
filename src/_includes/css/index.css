@@ -1,5 +1,5 @@
 #page-hero {
-    --bg: #f5f5f5;
+    --bg: #0001;
     --container-padding-y: 2em;
 }
 
@@ -16,4 +16,14 @@
         font-size: 1.25em;
         --container-padding-y: 5em;
     }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        --bg: #fff2;
+    }
+}
+
+:root[data-theme="dark"] {
+    --bg: #fff2;
 }
