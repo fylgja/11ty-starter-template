@@ -1,0 +1,9 @@
+{
+  "layout": "post",
+  "permalink": "/blog/{{ page.fileSlug }}/",
+  "tags": ["posts"],
+  "order": 10,
+  "breadcrumbs": {
+    "Blog": "/blog/"
+  }
+}

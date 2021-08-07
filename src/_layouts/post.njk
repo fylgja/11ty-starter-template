@@ -1,0 +1,22 @@
+---
+layout: default
+style: "
+.post-layout {
+    --container-size: 84ch;
+}
+"
+---
+
+{% include "header.njk" %}
+<main id="page-main" class="flex-grow my-6">
+    <div class="container">
+        {% include "breadcrumbs.njk" %}
+    </div>
+    <article class="post-layout container my-6">
+        {% if title %}
+            <h1>{{ title }}</h1>
+        {% endif %}
+        {{ content | safe }}
+    </article>
+</main>
+{% include "footer.njk" %}

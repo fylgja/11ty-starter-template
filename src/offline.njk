@@ -1,0 +1,63 @@
+---
+layout: null
+permalink: offline.html
+eleventyExcludeFromCollections: true
+---
+{%- set css -%}{% include "css/offline.css" %}{%- endset -%}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Offline - {{ meta.siteName }}</title>
+        <style>{{ css | cssmin | safe }}</style>
+    </head>
+    <body>
+        <main>
+            <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 20 20" fill="currentColor">
+                <path id="wifibar3" d="M9.9 5C6.8 5 4 6.4 2.2 8.7l1.1 1.1c1.6-2 4-3.2 6.7-3.2s5.1 1.3 6.7 3.2l1.1-1.1C15.8 6.4 13 5 9.9 5z"/>
+                <path id="wifibar2" d="M9.9 8c-2.3 0-4.3 1.1-5.6 2.8l1.1 1.1c1-1.4 2.6-2.4 4.5-2.4s3.5.9 4.5 2.4l1.1-1.1C14.2 9.1 12.2 8 9.9 8z"/>
+                <path id="wifibar1" d="M9.9 11c-1.5 0-2.7.8-3.4 2l1.1 1.1c.4-.9 1.3-1.6 2.3-1.6s2 .7 2.3 1.6l1.1-1.1c-.7-1.2-1.9-2-3.4-2z"/>
+                <circle id="wifidot" cx="9.9" cy="15.3" r="1"/>
+            </svg>
+            <h1>You are offline</h1>
+            <p>
+                It seems there is a problem with your connection.<br> We'll try to reload automatically once you're back online!
+            </p>
+            <button type="button" class="btn -theme">Force reload</button>
+        </main>
+        <script>
+            // Manual reload feature.
+            document.querySelector("button").addEventListener("click", () => {
+                window.location.reload();
+            });
+
+            // Listen to changes in the network state, reload when online.
+            // This handles the case when the device is completely offline.
+            window.addEventListener('online', () => {
+                window.location.reload();
+            });
+
+            // Check if the server is responding and reload the page if it is.
+            // This handles the case when the device is online, but the server
+            // is offline or misbehaving.
+            async function checkNetworkAndReload() {
+                try {
+                    const response = await fetch('.');
+                    // Verify we get a valid response from the server
+                    if (response.status >= 200 && response.status < 500) {
+                        window.location.reload();
+                        return;
+                    }
+                } catch {
+                    // Unable to connect to the server, ignore.
+                }
+                window.setTimeout(checkNetworkAndReload, 2500);
+            }
+
+            checkNetworkAndReload();
+        </script>
+    </body>
+</html>

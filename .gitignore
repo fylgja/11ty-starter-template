@@ -1,0 +1,17 @@
+# System files are ignored via .gitignore_global
+# see https://help.github.com/articles/ignoring-files/#create-a-global-gitignore for more information
+
+# Development
+/.vscode
+node_modules
+.env
+
+# Build
+_site
+
+# Temporary/Cache
+.cache/
+.log/
+.stylelintcache
+*.log
+*.pxd

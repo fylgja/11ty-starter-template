@@ -1,0 +1,10 @@
+@use "@fylgja/print";
+
+.page-header,
+.page-footer {
+    display: none;
+}
+
+.breadcrumbs a::after {
+    content: none;
+}

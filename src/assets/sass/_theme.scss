@@ -1,0 +1,14 @@
+@use "sass:color";
+@use "@fylgja/theme" with (
+    $color-theme: #038387,
+    $color-on-theme: #fff,
+);
+
+$color-alt: #1565c0;
+$color-on-alt: #fff;
+
+:root {
+    --color-alt: #{$color-alt};
+    --color-on-alt: #{$color-on-alt};
+    --divide-color: #{color.change(#000, $alpha: 0.2)};
+}

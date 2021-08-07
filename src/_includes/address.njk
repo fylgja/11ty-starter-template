@@ -1,0 +1,17 @@
+<address>
+    <div class="mb-2">
+        <span class="weight-bolder">Phone: </span>
+        <a href="tel:{{ meta.phone }}">{{ meta.phone }}</a>
+    </div>
+    <div class="mb-2">
+        <span class="weight-bolder">Email: </span>
+        <a href="mailto:{{ meta.email }}">{{ meta.email }}</a>
+    </div>
+    {% if meta.address.street %}
+    <div class="location">
+        <span class="street">{{ meta.address.street }},</span>
+        <span class="postcode">{{ meta.address.postcode }},</span>
+        <span class="city">{{ meta.address.city }}</span>
+    </div>
+    {% endif %}
+</address>

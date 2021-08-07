@@ -1,0 +1,12 @@
+.logo {
+    --link-color: currentColor;
+    --link-color-focus: currentColor;
+    display: inline-block;
+    text-decoration: none;
+
+    svg {
+        max-width: 100%;
+        width: 2.5em;
+        height: 2em;
+    }
+}

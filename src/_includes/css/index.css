@@ -1,0 +1,19 @@
+#page-hero {
+    --bg: #f5f5f5;
+    --container-padding-y: 2em;
+}
+
+#page-hero .title {
+    margin-bottom: 0;
+}
+
+#page-hero .slogan {
+    font-size: 1.5em;
+}
+
+@media (min-width: 768px) {
+    #page-hero {
+        font-size: 1.25em;
+        --container-padding-y: 5em;
+    }
+}

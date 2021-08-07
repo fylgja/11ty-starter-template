@@ -1,0 +1,46 @@
+{% if navigation.main %}
+    <dialog id="offcanvas-menu" class="offcanvas-end py-0 px-2">
+        <div class="flex justify-between items-center py-3 px-3">
+            <a href="/" class="logo">
+                {{ '/src/assets/images/logo.svg' | svgContents | safe }}
+                <span class="aria-only">{{ meta.siteName }}</span>
+            </a>
+            <button type="button" class="btn -icon close">
+                <svg width="24" height="24" fill="currentColor">
+                    <title>Close menu</title>
+                    <use href="/images/sprite.svg#close" />
+                </svg>
+            </button>
+        </div>
+        <div class="dialog-inner flex-auto">
+            <nav class="menu" aria-label="Offcanvas menu">
+                <ul>
+                    {% for item in navigation.offcanvas %}
+                        <li class="nav-item">
+                            {% menuItem item.url, "nav-link", page.url, item.external %}
+                                {{ item.text }}
+                            {% endmenuItem %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+        <div class="py-4 px-3">
+            <nav aria-label="Offcanvas extra menu" class="footer-nav flex items-center">
+                {% for item in navigation.socials %}
+                    {% menuItem item.url, "me-4 text-reset", page.url, item.external %}
+                        <svg width="24" height="24" fill="currentColor">
+                            <title>{{ meta.text }}</title>
+                            <use href="/images/socials.svg#{{ item.icon }}" />
+                        </svg>
+                    {% endmenuItem %}
+                {% endfor %}
+                <button data-toggle-color-scheme
+                    type="button"
+                    title="Toggle color scheme"
+                    class="btn -icon ms-auto"
+                >{{ '/src/assets/images/color-scheme.svg' | svgContents | safe }}</button>
+            </nav>
+        </div>
+    </dialog>
+{% endif %}

@@ -1,0 +1,14 @@
+---
+layout: default
+---
+
+{% include "header.njk" %}
+<main id="page-main" class="flex-grow my-6">
+    <article class="container my-6">
+        {% if title %}
+            <h1>{{ title }}</h1>
+        {% endif %}
+        {{ content | safe }}
+    </article>
+</main>
+{% include "footer.njk" %}

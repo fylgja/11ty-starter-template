@@ -1,0 +1,14 @@
+@use "@fylgja/aria-only" as *;
+
+.skip-link {
+    @include aria-only-focusable;
+    z-index: 9;
+    position: absolute;
+    background-color: var(--color-bg);
+    padding: 1em;
+
+    &:focus,
+    &:hover {
+        --link-color-state: var(--color-text);
+    }
+}

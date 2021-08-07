@@ -1,0 +1,60 @@
+<footer class="page-footer">
+    <div class="container auto-grid">
+        {% if navigation.about %}
+            <nav id="about-menu" aria-label="About us menu">
+                <strong class="block mb-4">About us</strong>
+                <ul class="list-style -none space-y-2">
+                    {% for item in navigation.about %}
+                        <li>
+                            {% menuItem item.url, "", page.url, item.external %}
+                                {{ item.text }}
+                            {% endmenuItem %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        {% endif %}
+        <nav id="blog-menu" aria-label="Latest posts menu">
+            <strong class="block mb-4">Latest posts</strong>
+            <ul class="list-style -none space-y-2">
+                {% for item in collections.posts %}
+                    <li>
+                        {% menuItem item.url, "", page.url, item.external %}
+                            {{ item.data.title }}
+                        {% endmenuItem %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+        <nav id="follow-us-menu" aria-label="Follow us">
+            <strong class="block mb-4">Find us also on</strong>
+            <ul class="list-style -none space-y-2">
+                {% for item in navigation.socials %}
+                    <li>
+                        {% menuItem item.url, "flex items-center", page.url, item.external %}
+                            {% if item.icon %}
+                                <svg width="24" height="24" fill="currentColor" class="me-2">
+                                    <title>{{ meta.text }}</title>
+                                    <use href="/images/socials.svg#{{ item.icon }}" />
+                                </svg>
+                            {% endif %}
+                            <span>{{ item.text }}</span>
+                        {% endmenuItem %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+    <div class="sub-footer">
+        <div class="sm-flex container items-center justify-between">
+            <div><small class="copyright">© {% year %} {{ meta.siteName }}. All Rights Reserved.</small></div>
+            <div class="flex items-center justify-between">
+                <button data-toggle-color-scheme
+                    type="button"
+                    title="Toggle color scheme"
+                    class="btn -icon"
+                >{{ '/src/assets/images/color-scheme.svg' | svgContents | safe }}</button>
+            </div>
+        </div>
+    </div>
+</footer>

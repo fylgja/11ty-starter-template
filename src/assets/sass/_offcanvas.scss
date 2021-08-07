@@ -1,0 +1,5 @@
+@use "@fylgja/dialog";
+
+#offcanvas-menu {
+    --dialog-width: min(350px, 100%);
+}

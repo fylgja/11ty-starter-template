@@ -1,0 +1,76 @@
+{%- set pageTitle -%}{% if title %}{{ title }} - {% endif %}{{ meta.siteName }}{%- endset -%}
+{%- set pageDescription -%}{% if description %}{{ description }}{% else %}{{ meta.siteDescription }}{% endif %}{%- endset -%}
+{%- set pageSocialImg -%}{{ meta.url }}/images/{% if preview %}{{ preview }}{% else %}preview.png{% endif %}{%- endset -%}
+{%- set pageUrl -%}{{ meta.url }}{{ page.url }}{%- endset -%}
+{%- set pageCanonical -%}{{ meta.url }}{% if canonical %}{{ canonical }}{% else %}{{ page.url }}{% endif %}{%- endset -%}
+{%- set twitterCreator -%}{% if twitter %}{{ twitter }}{% else %}{{ meta.socials.twitter }}{% endif %}{%- endset -%}
+{%- if (style | isObject ) -%}
+{%- set cssinline -%}{% for i in style %}{% include i %}{% endfor %}{%- endset -%}
+{%- else -%}
+{%- set cssinline -%}{{ style }}{%- endset -%}
+{%- endif -%}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>{{ pageTitle }}</title>
+        <meta name="description" content="{{ pageDescription }}">
+
+        {% if noindex or draft %}
+            <meta name="robots" content="noindex" />
+        {% endif %}
+
+        {# Preconnect #}
+        {% if preconnect %}{{ preconnect | safe }}{% endif %}
+        <link rel="preload" as="style" href="/css/main.css">
+        <link rel="preload" as="font" href="/fonts/Rubik-Italic-VariableFont_wght.woff2" type="font/woff2" crossorigin>
+        <link rel="preload" as="font" href="/fonts/Rubik-VariableFont_wght.woff2" type="font/woff2" crossorigin>
+        {% if preload %}{{ preload | safe }}{% endif %}
+
+        {# Seo & Feed #}
+        <meta name="twitter:card" content="summary_large_image">
+        {% if meta.socials.twitter %}
+            <meta name="twitter:site" content="@{{ meta.socials.twitter }}">
+            <meta name="twitter:creator" content="@{{ twitterCreator }}">
+        {% endif %}
+        <meta name="twitter:title" content="{{pageTitle}}">
+        <meta name="twitter:description" content="{{pageDescription}}">
+        <meta name="twitter:image" content="{{pageSocialImg}}">
+        <meta name="og:title" content="{{pageTitle}}">
+        <meta name="og:description" content="{{pageDescription}}">
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="{{pageUrl}}" />
+        <meta property="og:image" content="{{pageSocialImg}}">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <link rel="canonical" href="{{pageCanonical}}" />
+        <link rel="alternate" type="application/rss+xml" title="{{ meta.title }}" href="{{ meta.url }}/feed.xml"/>
+
+        {# Webapp #}
+        <meta name="theme-color" content="{{ meta.themeColor }}" media="(prefers-color-scheme: light)">
+        <meta name="theme-color" content="{{ meta.themeColorDark }}" media="(prefers-color-scheme: dark)">
+        <meta name="apple-mobile-web-app-title" content="{{ meta.siteName }}">
+        <meta name="application-name" content="{{ meta.siteName }}">
+        <meta name="msapplication-TileColor" content="{{ meta.themeColor }}">
+
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="{{ meta.themeColor }}">
+
+        {# Assets #}
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/print.css" media="print">
+        {% if css %}{{ css | safe }}{% endif %}
+        {% if cssinline %}<style>{{ cssinline | cssmin | safe }}</style>{% endif %}
+        <script src="/js/main.js" defer></script>
+    </head>
+    <body class="flex flex-col min-h-screen">
+        {{ content | safe }}
+    </body>
+</html>
