@@ -19,6 +19,8 @@ const baseUrl = isProd ? "https://site.dev" : "http://localhost:8080";
 const { version } = require("./package.json");
 
 module.exports = function (eleventyConfig) {
+    eleventyConfig.setQuietMode(!isProd);
+
     // Copy
     eleventyConfig.addPassthroughCopy({
         "src/**/*.{jpg,png,svg,webp}": "images",
@@ -40,7 +42,7 @@ module.exports = function (eleventyConfig) {
         "cssmin",
         (code) => new CleanCSS({}).minify(code).styles
     );
-    eleventyConfig.addFilter("assets", (url) =>
+    eleventyConfig.addFilter("assetUrl", (url) =>
         isProd ? url + "?=v" + version : url
     );
     eleventyConfig.addFilter("readableDate", (dateObj) =>

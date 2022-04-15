@@ -22,7 +22,7 @@
         {% endfor %}
     {%- endif -%}
 
-    <link rel="preload" href="{{ '/css/main.css' | assets }}" as="style">
+    <link rel="preload" href="{{ '/css/main.css' | assetUrl }}" as="style">
 
     {%- if preloadCss -%}
         {% for name, item in preload %}
@@ -67,13 +67,13 @@
     {# <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="manifest" href="{{ '/site.webmanifest' | assets }}"> #}
+    <link rel="manifest" href="{{ '/site.webmanifest' | assetUrl }}"> #}
 
     {# Assets #}
-    <link rel="stylesheet" href="{{ '/css/main.css' | assets }}">
+    <link rel="stylesheet" href="{{ '/css/main.css' | assetUrl }}">
     {%- if css -%}
         {% for name, item in css %}
-            <link rel="stylesheet" href="{{ item | assets }}">
+            <link rel="stylesheet" href="{{ item | assetUrl }}">
         {% endfor %}
     {%- endif -%}
 
@@ -85,11 +85,11 @@
         </style>
     {%- endif -%}
 
-    <script src="{{ '/js/main.js' | assets }}" defer></script>
+    <script src="{{ '/js/main.js' | assetUrl }}" defer></script>
 
     {%- if js -%}
         {% for name, item in js %}
-            <script src="{{ item | assets }}" defer></script>
+            <script src="{{ item | assetUrl }}" defer></script>
         {% endfor %}
     {%- endif -%}
 </head>
