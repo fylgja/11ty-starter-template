@@ -27,6 +27,7 @@ module.exports = function (eleventyConfig) {
     });
 
     // Plugins
+    // TODO: Add a plugin for markdown
     eleventyConfig.addPlugin(EleventyRenderPlugin);
     eleventyConfig.addPlugin(eleventySass, { sass, outputPath: "css" });
     eleventyConfig.addPlugin(eleventyNavigationPlugin);
@@ -35,6 +36,7 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPlugin(sitemap, { sitemap: { hostname: baseUrl } });
 
     // Filters
+    // TODO: add dateTime -> https://github.com/Ewan-D/beginnersBase11ty/blob/main/.eleventy.js
     eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
     eleventyConfig.addLiquidShortcode("image", imageShortcode);
     eleventyConfig.addJavaScriptFunction("image", imageShortcode);
