@@ -1,4 +1,4 @@
-@use "@fylgja/aria-only" as *;
+@use "@fylgja/aria-only/helper" as *;
 
 .skip-link {
     @include aria-only-focusable;

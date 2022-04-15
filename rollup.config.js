@@ -1,52 +1,32 @@
+import commonjs from "@rollup/plugin-commonjs";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import { terser } from "rollup-plugin-terser";
-const { input, output } = require("./src/_data/meta.js");
+
 const isProd = process.env.NODE_ENV === "production";
-const plugins = isProd ? [nodeResolve(), terser()] : [nodeResolve()];
 
-const devConfig = [
-    {
-        input: `${input}/assets/js/main.js`,
-        output: {
-            file: `${output}/js/main.js`,
-            format: "cjs",
-        },
-        watch: { clearScreen: false },
-        plugins,
-    },
-    {
-        input: `${input}/assets/js/sw.js`,
-        output: {
-            file: `${output}/sw.js`,
-            format: "cjs",
-        },
-        watch: { clearScreen: false },
-        plugins,
-    },
-];
+// *1: Force to false to avoid minification errors with the dialogPolyfill
+const terserOptions = { toplevel: false }; // *1
 
-const productionConfig = [
-    {
-        input: `${input}/assets/js/main.js`,
-        output: {
-            file: `${output}/js/main.js`,
-            format: "cjs",
-        },
-        plugins,
-    },
-    {
-        input: `${input}/assets/js/sw.js`,
-        output: {
-            file: `${output}/sw.js`,
-            format: "cjs",
-        },
-        plugins,
-    },
-];
+const pluginsProd = [nodeResolve(), commonjs(), terser(terserOptions)];
+const pluginsDev = [nodeResolve(), commonjs()];
+const plugins = isProd ? pluginsProd : pluginsDev;
+
+const sourcemap = isProd ? false : true;
+const watch = isProd ? { clearScreen: false } : {};
 
 export default () => {
-    if (process.env.NODE_ENV === "production") {
-        return productionConfig;
-    }
-    return devConfig;
+    return [
+        {
+            input: "src/assets/js/main.js",
+            output: { dir: "_site/js", format: "iife", sourcemap },
+            watch,
+            plugins,
+        },
+        {
+            input: "src/assets/js/sw.js",
+            output: { file: "_site/sw.js", format: "cjs" },
+            watch,
+            plugins,
+        },
+    ];
 };

@@ -1,29 +1,32 @@
 <a href="#page-main" class="skip-link">Go to main content</a>
 <header class="page-header sticky top-0">
     <div class="flex justify-between items-center py-2 md-py-4 container">
-        <a href="/" class="logo flex-shrink">
-            {{ '/src/assets/images/logo.svg' | svgContents | safe }}
-            <span class="aria-only">{{ meta.siteName }}</span>
-        </a>
-        {% if navigation.main %}
-            <div class="flex items-center">
-                <nav id="main-menu"
-                    aria-label="Main menu"
-                    class="menu -row hidden sm-inline-flex iteme-center space-x-2">
-                    {% for item in navigation.main %}
-                        {% menuItem item.url, "", page.url, item.external %}
-                            <span>{{ item.text }}</span>
-                        {% endmenuItem %}
-                    {% endfor %}
-                </nav>
-                <button id="show-offcanvas-menu" type="button" class="btn -icon ms-4">
-                    <svg width="24" height="24" fill="currentColor">
-                        <title>Open menu</title>
-                        <use href="/images/sprite.svg#menu" />
-                    </svg>
-                </button>
-            </div>
-        {% endif %}
+        {% include "logo.njk" %}
+        <div class="flex items-center">
+            <nav>
+                <ul class="menu -row flex-wrap">
+                {%- for entry in collections.all | eleventyNavigation %}
+                    <li>
+                        <a
+                            href="{{ entry.url | url }}"
+                            {% if entry.url == page.url %}class="is-active"{% endif %}
+                            {% if entry.url == page.url %}aria-current="page"{% endif %}
+                        >{{ entry.title }}</a>
+                    </li>
+                {%- endfor %}
+                </ul>
+            </nav>
+            <button
+                id="show-offcanvas-menu"
+                type="button"
+                class="btn -icon ms-4"
+            >
+                <svg width="24" height="24" fill="currentColor">
+                    <title>Open menu</title>
+                    <use href="/images/sprite.svg#menu" />
+                </svg>
+            </button>
+        </div>
     </div>
 </header>
 {% include "offcanvas.njk" %}

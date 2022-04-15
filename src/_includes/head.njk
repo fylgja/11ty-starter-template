@@ -1,0 +1,94 @@
+{%- set pageTitle -%}{% if title %}{{ title }} - {% endif %}{{ meta.siteName }}{%- endset -%}
+{%- set pageDescription -%}{% if description %}{{ description }}{% else %}{{ meta.siteDescription }}{% endif %}{%- endset -%}
+{%- set pageSocialImg -%}{{ meta.url }}/images/{% if preview %}{{ preview }}{% else %}preview.png{% endif %}{%- endset -%}
+{%- set pageUrl -%}{{ meta.url }}{{ page.url }}{%- endset -%}
+{%- set pageCanonical -%}{{ meta.url }}{% if canonical %}{{ canonical }}{% else %}{{ page.url }}{% endif %}{%- endset -%}
+{%- set twitterCreator -%}{% if twitter %}{{ twitter }}{% else %}{{ meta.socials.twitter }}{% endif %}{%- endset -%}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ pageTitle }}</title>
+    <meta name="description" content="{{ pageDescription }}">
+
+    {%- if noindex or draft -%}
+        <meta name="robots" content="noindex" />
+    {%- endif -%}
+
+    {%- if preconnect -%}
+        {% for name, item in preconnect %}
+            <link rel="preconnect" href="{{ item }}">
+        {% endfor %}
+    {%- endif -%}
+
+    <link rel="preload" href="{{ '/css/main.css' | assets }}" as="style">
+
+    {%- if preloadCss -%}
+        {% for name, item in preload %}
+            <link rel="preload" href="{{ item }}" as="style">
+        {% endfor %}
+    {%- endif -%}
+
+    {%- if preloadFont -%}
+        {% for name, item in preload %}
+            <link rel="preload" href="{{ item }}" as="font" type="font/woff2" crossorigin>
+        {% endfor %}
+    {%- endif -%}
+
+    {# Seo & Feed #}
+    <meta name="twitter:card" content="summary_large_image">
+    {%- if meta.socials.twitter -%}
+        <meta name="twitter:site" content="@{{ meta.socials.twitter }}">
+        <meta name="twitter:creator" content="@{{ twitterCreator }}">
+    {%- endif -%}
+    <meta name="twitter:title" content="{{pageTitle}}">
+    <meta name="twitter:description" content="{{pageDescription}}">
+    <meta name="twitter:image" content="{{pageSocialImg}}">
+    <meta name="og:title" content="{{pageTitle}}">
+    <meta name="og:description" content="{{pageDescription}}">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{pageUrl}}" />
+    <meta property="og:image" content="{{pageSocialImg}}">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <link rel="canonical" href="{{pageCanonical}}" />
+    <link rel="alternate" type="application/rss+xml" title="{{ meta.title }}" href="{{ meta.url }}/feed.xml"/>
+    <meta name="google-site-verification" content="Zaqg8C_0PVV85UIOoyMDHgCfoE8C20_2TS3F6jPhQcU" />
+
+    {# Webapp #}
+    <meta name="theme-color" content="{{ meta.themeColor }}">
+    <meta name="apple-mobile-web-app-title" content="{{ meta.siteName }}">
+    <meta name="application-name" content="{{ meta.siteName }}">
+    <meta name="msapplication-TileColor" content="{{ meta.themeColor }}">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="{{ '/site.webmanifest' | assets }}">
+
+    {# Assets #}
+    <link rel="stylesheet" href="{{ '/css/main.css' | assets }}">
+    {%- if css -%}
+        {% for name, item in css %}
+            <link rel="stylesheet" href="{{ item | assets }}">
+        {% endfor %}
+    {%- endif -%}
+
+    {%- if style -%}
+        <style>
+            {% for name, item in style %}
+                {{ item | cssmin | safe }}
+            {% endfor %}
+        </style>
+    {%- endif -%}
+
+    <script src="{{ '/js/main.js' | assets }}" defer></script>
+
+    {%- if js -%}
+        {% for name, item in js %}
+            <script src="{{ item | assets }}" defer></script>
+        {% endfor %}
+    {%- endif -%}
+</head>

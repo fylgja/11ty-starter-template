@@ -1,22 +1,31 @@
 ---
-layout: default
-style: "
-.post-layout {
-    --container-size: 84ch;
+layout: base
+style: {
+    post: ".post-layout { --container-size: 84ch }"
 }
-"
 ---
 
-{% include "header.njk" %}
-<main id="page-main" class="flex-grow my-6">
-    <div class="container">
-        {% include "breadcrumbs.njk" %}
-    </div>
-    <article class="post-layout container my-6">
-        {% if title %}
-            <h1>{{ title }}</h1>
-        {% endif %}
-        {{ content | safe }}
-    </article>
-</main>
-{% include "footer.njk" %}
+<article class="post-layout container my-6">
+    {% if title %}
+        <h1>{{ title }}</h1>
+    {% endif %}
+    <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
+
+    {{ content | safe }}
+
+    {%- if collections.posts %}
+        {%- set nextPost = collections.posts | getNextCollectionItem(page) %}
+        {%- set previousPost = collections.posts | getPreviousCollectionItem(page) %}
+        {%- if nextPost or previousPost %}
+            <hr class="mt-12">
+            <nav class="pagination">
+                {%- if previousPost %}
+                    <a href="{{ previousPost.url | url }}">Previous: {{ previousPost.data.title }}</a>
+                {% endif %}
+                {%- if nextPost %}
+                    <a href="{{ nextPost.url | url }}" class="ms-auto">Next: {{ nextPost.data.title }}</a>
+                {% endif %}
+            </nav>
+        {%- endif %}
+    {%- endif %}
+</article>

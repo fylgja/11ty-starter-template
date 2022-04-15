@@ -1,58 +1,74 @@
-// Fylgja (getfylgja.com)
-// Licensed under MIT Open Source
+// Source https://gist.github.com/GrimLink/1b9383b51d7317969397aa8b634ad6f4
 
-import dialogPolyfill from "dialog-polyfill";
-import tabLock from "../tablock";
+import dialogPolyfill from "dialog-polyfill/dist/dialog-polyfill.js";
 
-function newDialog(id, button, backdrop = true) {
+export function newDialog(id, button, backdrop = true) {
     const dialog = document.querySelector(id);
     const btn = document.querySelector(button);
-
-    if (!dialog) return;
-    if (!btn) return;
-
+    if (!dialog || !btn) return;
     if (typeof HTMLDialogElement !== "function") {
         dialogPolyfill.registerDialog(dialog);
     }
 
+    /**
+     * Lock the screen when the dialog is open
+     * Can be dropped when `:has` is fully supported in all browsers
+     *
+     * @param {boolean} use
+     */
     const dialogScrollLock = (use = true) => {
         document.body.style.overflow = use ? "hidden" : "";
     };
 
-    const dialogClose = (target, e, dialog) => {
-        if (!e.target.closest(target)) return;
+    /**
+     * Handles the close of the dialog and the button state
+     *
+     * @param {string} target
+     * @param {Event} event
+     * @param {HTMLDialogElement} dialog
+     */
+    const dialogClose = (target, event, dialog) => {
+        if (!event.target.closest(target)) return;
         dialog.close();
         btn.setAttribute("aria-expanded", "false");
     };
 
-    const dialogCloseOnBackdrop = (e, dialog) => {
+    /**
+     * check if clicked outside of the dialog
+     *
+     * @param {Event} event
+     * @param {HTMLDialogElement} dialog
+     */
+    const dialogCloseOnBackdrop = (event, dialog) => {
         const rect = dialog.getBoundingClientRect();
         const isInDialog =
-            rect.top <= e.clientY &&
-            e.clientY <= rect.top + rect.height &&
-            rect.left <= e.clientX &&
-            e.clientX <= rect.left + rect.width;
+            rect.top <= event.clientY &&
+            event.clientY <= rect.top + rect.height &&
+            rect.left <= event.clientX &&
+            event.clientX <= rect.left + rect.width;
 
         if (!isInDialog) {
-            dialog.close();
+            dialog.close("dismiss");
         }
     };
 
     btn.addEventListener("click", () => {
+        btn.setAttribute("aria-expanded", "true");
+
         if (backdrop) {
             dialog.showModal();
             dialogScrollLock();
-            tabLock(dialog);
-            btn.setAttribute("aria-expanded", "true");
         } else {
             dialog.show();
-            btn.setAttribute("aria-expanded", "true");
         }
     });
 
-    dialog.addEventListener("click", (e) => {
-        dialogClose(".close", e, dialog);
-        dialogCloseOnBackdrop(e, dialog);
+    dialog.addEventListener("click", (event) => {
+        dialogClose(".close", event, dialog);
+    });
+
+    dialog.addEventListener("mouseup", (event) => {
+        dialogCloseOnBackdrop(event, dialog);
     });
 
     if (backdrop) {
@@ -60,5 +76,3 @@ function newDialog(id, button, backdrop = true) {
         dialog.addEventListener("cancel", () => dialogScrollLock(false));
     }
 }
-
-export default newDialog;

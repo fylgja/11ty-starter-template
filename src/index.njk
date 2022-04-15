@@ -1,10 +1,18 @@
 ---
-layout: home
+layout: base
 permalink: index.html
-style: ["css/index.css"]
+eleventyNavigation:
+    key: "Home"
+style: {
+    home: "
+    #page-hero {
+        --height: 400px;
+    }
+    "
+}
 ---
 
-<section id="page-hero" class="mb-12">
+<section id="page-hero" class="section -theme flex flex-col justify-center mb-12">
     <div class="container">
         <h1 class="title">{{ meta.siteName }}</h1>
         <div class="slogan">{{ meta.siteDescription }}</div>

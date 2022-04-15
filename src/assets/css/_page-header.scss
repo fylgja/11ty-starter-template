@@ -3,3 +3,7 @@
     border-bottom: 1px solid rgb(0 0 0 / 10%);
     background-color: var(--card-bg, #fff);
 }
+
+#offcanvas-menu {
+    --dialog-width: min(350px, 100%);
+}

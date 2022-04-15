@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    {% include "head.njk" %}
+    <body class="flex flex-col min-h-screen">
+        {% include "header.njk" %}
+        <main id="page-main" class="page-container flex-grow">
+            <div class="container">
+                {% include "breadcrumbs.njk" %}
+            </div>
+            {{ content | safe }}
+        </main>
+        {% include "footer.njk" %}
+    </body>
+</html>

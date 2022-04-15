@@ -1,27 +1,21 @@
-const url =
-    process.env.ELEVENTY_ENV === "prod"
-        ? "https://site.dev"
-        : "http://localhost:8080";
-
 module.exports = {
-    env: process.env.ELEVENTY_ENV,
-    output: "_site",
-    input: "src",
-    url,
-    themeColor: "#fff",
-    themeColorDark: "#111",
-    siteName: "11ty Fylgja",
-    siteDescription: "My cool new site",
-    author: "You",
-    email: "",
-    phone: "",
-    address: "",
+    author: "Your Name",
+    siteName: "Site Name",
+    siteDescription:
+        "Your cool new blog, built with Eleventy and Eleventy plugins.",
+    themeColor: "#1565c0",
+    email: "info@site.dev",
+    phone: "+47 988 988 988",
+    address: {
+        name: "Build with Fylgja",
+        street: "Modesta Spurs",
+        postcode: "00-000",
+        city: "Roselynside",
+        region: "New Mexico",
+        country: "United States",
+    },
     socials: {
-        facebook: "",
-        instagram: "",
-        twitter: "",
-        youtube: "",
-        linkedin: "",
-        github: "",
+        twitter: "FylgjaDev",
+        github: "fylgja",
     },
 };

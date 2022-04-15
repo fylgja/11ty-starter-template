@@ -1,11 +1,13 @@
 ---
-layout: "blog"
+layout: "page"
 title: "My blog"
 description: "My blog"
-style: "
-#blog-grid {
-    --cols-size: 400px;
-"
+permalink: "/blog/"
+eleventyNavigation:
+    key: "Blog"
+style: {
+    blogIndex: "#blog-grid { --cols-size: 400px }"
+}
 ---
 
 <div id="blog-grid" class="auto-grid">

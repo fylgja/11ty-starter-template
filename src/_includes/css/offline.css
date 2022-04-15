@@ -25,7 +25,7 @@ html {
 ::before,
 ::after {
     box-sizing: inherit;
-    border: 0 solid currentColor;
+    border: 0 solid currentcolor;
 }
 
 body {

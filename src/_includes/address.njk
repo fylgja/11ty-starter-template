@@ -1,17 +1,34 @@
-<address>
-    <div class="mb-2">
-        <span class="weight-bolder">Phone: </span>
-        <a href="tel:{{ meta.phone }}">{{ meta.phone }}</a>
+<address class="storeinfo" itemscope itemtype="https://schema.org/Organization">
+    {% if meta.address.name %}
+        <div itemprop="name" class="h4">{{ meta.address.name }}</div>
+    {% endif %}
+    <div itemprop="address" class="mb-2" itemscope itemtype="https://schema.org/PostalAddress">
+        {% if meta.address.street %}
+            <span itemprop="streetAddress">{{ meta.address.street }}</span><br>
+        {% endif %}
+        {% if meta.address.postcode %}
+            <span class="postcode" itemprop="postalCode">{{ meta.address.postcode }}</span>
+        {% endif %}
+        {% if meta.address.city %}
+            <span class="city" itemprop="addressLocality">{{ meta.address.city }}</span><br>
+        {% endif %}
+        {% if meta.address.country %}
+            {% if meta.address.region %}
+                <span class="region" itemprop="addressRegion">{{ meta.address.region }},</span>
+            {% endif %}
+            <span class="country" itemprop="addressCountry">{{ meta.address.country }}</span>
+        {% endif %}
     </div>
-    <div class="mb-2">
-        <span class="weight-bolder">Email: </span>
-        <a href="mailto:{{ meta.email }}">{{ meta.email }}</a>
-    </div>
-    {% if meta.address.street %}
-    <div class="location">
-        <span class="street">{{ meta.address.street }},</span>
-        <span class="postcode">{{ meta.address.postcode }},</span>
-        <span class="city">{{ meta.address.city }}</span>
-    </div>
+    {% if meta.phone %}
+        <div>
+            <span class="weight-bold">Phone: </span>
+            <a href="tel:{{ meta.phone }}">{{ meta.phone }}</a>
+        </div>
+    {% endif %}
+    {% if meta.email %}
+        <div>
+            <span class="weight-bold">Mail: </span>
+            <a href="mailto:{{ meta.email }}">{{ meta.email }}</a>
+        </div>
     {% endif %}
 </address>
