@@ -1,3 +1,5 @@
+const { EleventyRenderPlugin } = require("@11ty/eleventy");
+
 // Build tools
 const eleventySass = require("@grimlink/eleventy-plugin-sass");
 const sass = require("sass");
@@ -23,6 +25,7 @@ module.exports = function (eleventyConfig) {
     });
 
     // Plugins
+    eleventyConfig.addPlugin(EleventyRenderPlugin);
     eleventyConfig.addPlugin(eleventySass, { sass, outputPath: "css" });
     eleventyConfig.addPlugin(eleventyNavigationPlugin);
     eleventyConfig.addPlugin(syntaxHighlight);

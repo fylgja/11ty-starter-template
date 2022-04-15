@@ -3,7 +3,7 @@
     <div class="flex justify-between items-center py-2 md-py-4 container">
         {% include "logo.njk" %}
         <div class="flex items-center">
-            <nav>
+            <nav class="hidden xs-block">
                 <ul class="menu -row flex-wrap">
                 {%- for entry in collections.all | eleventyNavigation %}
                     <li>
@@ -19,7 +19,7 @@
             <button
                 id="show-offcanvas-menu"
                 type="button"
-                class="btn -icon ms-4"
+                class="btn -icon ms-4 xs-hidden"
             >
                 <svg width="24" height="24" fill="currentColor">
                     <title>Open menu</title>
