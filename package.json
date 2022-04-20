@@ -41,7 +41,7 @@
     "fylgja": "^1.1.5"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.0",
+    "@11ty/eleventy": "^1.0.1",
     "@11ty/eleventy-img": "^2.0.0",
     "@11ty/eleventy-navigation": "^0.3.2",
     "@11ty/eleventy-plugin-rss": "^1.1.2",
@@ -49,7 +49,7 @@
     "@fullhuman/postcss-purgecss": "^4.1.3",
     "@fylgja/stylelint-config": "^4.1.1",
     "@grimlink/eleventy-plugin-sass": "^1.0.2",
-    "@quasibit/eleventy-plugin-sitemap": "github:quasibit/eleventy-plugin-sitemap",
+    "@quasibit/eleventy-plugin-sitemap": "^2.1.5",
     "@rollup/plugin-commonjs": "^21.1.0",
     "@rollup/plugin-node-resolve": "^13.2.1",
     "clean-css": "^5.2.4",
