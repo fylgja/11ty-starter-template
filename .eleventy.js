@@ -11,6 +11,8 @@ const imageShortcode = require("./src/_config/image");
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
+const mdIt = require("markdown-it");
+const mdItExternalAnchor = require("markdown-it-external-anchor");
 const sitemap = require("@quasibit/eleventy-plugin-sitemap");
 
 // Config
@@ -20,6 +22,15 @@ const { version } = require("./package.json");
 
 module.exports = function (eleventyConfig) {
     eleventyConfig.setQuietMode(!isProd);
+    eleventyConfig.setLibrary(
+        "md",
+        mdIt({
+            html: true,
+        }).use(mdItExternalAnchor, {
+            domain: baseUrl,
+            class: "external",
+        })
+    );
 
     // Copy
     eleventyConfig.addPassthroughCopy({
@@ -27,7 +38,6 @@ module.exports = function (eleventyConfig) {
     });
 
     // Plugins
-    // TODO: Add a plugin for markdown
     eleventyConfig.addPlugin(EleventyRenderPlugin);
     eleventyConfig.addPlugin(eleventySass, { sass, outputPath: "css" });
     eleventyConfig.addPlugin(eleventyNavigationPlugin);
