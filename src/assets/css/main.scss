@@ -1,8 +1,7 @@
-// @use "@fylgja/theme" with (
-//     $color-theme: #00bcd4
-// );
-@use "@fylgja/base";
-@use "@fylgja/print";
+@use "@fylgja/theme" with (
+    $color-theme: #3740ff
+);
+@use "base";
 
 // Components
 @use "@fylgja/aspect-ratio";

@@ -3,7 +3,7 @@ module.exports = {
     siteName: "Site Name",
     siteDescription:
         "Your cool new blog, built with Eleventy and Eleventy plugins.",
-    themeColor: "#1565c0",
+    themeColor: "#6001ff",
     email: "info@site.dev",
     phone: "+47 988 988 988",
     address: {

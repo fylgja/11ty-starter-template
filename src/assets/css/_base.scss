@@ -1,0 +1,6 @@
+@use "@fylgja/base";
+@use "@fylgja/print";
+
+body {
+    font-size: clamp(1rem, 1vw, 1.125rem);
+}

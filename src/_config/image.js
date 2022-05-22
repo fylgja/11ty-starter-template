@@ -2,7 +2,7 @@ const Image = require("@11ty/eleventy-img");
 const path = require("path");
 
 async function imageShortcode(src, alt = "", options = {}) {
-    const { widths = [300, 600], sizes = "100vw", lazy = true } = options;
+    const { widths = [320, 640], sizes = "100vw", lazy = true } = options;
     const originalFormat = path.extname(src).replace(/\./g, "");
     const metadata = await Image(src, {
         widths,
