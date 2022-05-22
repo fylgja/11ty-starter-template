@@ -8,11 +8,11 @@ module.exports = {
     phone: "+47 988 988 988",
     address: {
         name: "Build with Fylgja",
-        street: "Modesta Spurs",
+        street: "Fylgja 11",
         postcode: "00-000",
-        city: "Roselynside",
-        region: "New Mexico",
-        country: "United States",
+        city: "Zwollywood",
+        region: "Overijsel",
+        country: "Netherlands",
     },
     socials: {
         twitter: "FylgjaDev",
