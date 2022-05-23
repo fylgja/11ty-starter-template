@@ -26,12 +26,14 @@
 @use "@fylgja/scroll-slider";
 @use "@fylgja/section";
 @use "@fylgja/table";
-@use "./skip-link";
+
+// Template Sections
 @use "./page-header";
 @use "./page-footer";
 
 // Utilities
 @use "@fylgja/aria-only";
+@use "./skip-link";
 @use "@fylgja/gradient";
 @use "@fylgja/hashlink";
 @use "@fylgja/scrollbar";

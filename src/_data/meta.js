@@ -1,6 +1,6 @@
 module.exports = {
     author: "Your Name",
-    siteName: "Site Name",
+    siteName: "New 11ty Fylgja Blog",
     siteDescription: "Your cool new blog, built with Eleventy and Fylgja CSS.",
     themeColor: "#6001ff",
     email: "info@site.dev",
