@@ -17,7 +17,7 @@ const sitemap = require("@quasibit/eleventy-plugin-sitemap");
 
 // Config
 const isProd = process.env.ELEVENTY_ENV === "prod";
-const baseUrl = isProd ? "https://site.dev" : "http://localhost:8080";
+const baseUrl = require("./src/_data/meta.js").url;
 const { version } = require("./package.json");
 
 module.exports = function (eleventyConfig) {
