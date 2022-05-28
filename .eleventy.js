@@ -6,6 +6,7 @@ const sass = require("sass");
 const CleanCSS = require("clean-css");
 const minifyHtml = require("./src/_config/minifyHtml");
 const imageShortcode = require("./src/_config/image");
+const dayjs = require("dayjs");
 
 // Generators
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
@@ -17,8 +18,7 @@ const sitemap = require("@quasibit/eleventy-plugin-sitemap");
 
 // Config
 const isProd = process.env.ELEVENTY_ENV === "prod";
-const baseUrl = require("./src/_data/meta.js").url;
-const { version } = require("./package.json");
+const env = require("./src/_data/env.js");
 
 module.exports = function (eleventyConfig) {
     eleventyConfig.setQuietMode(!isProd);
@@ -27,7 +27,7 @@ module.exports = function (eleventyConfig) {
         mdIt({
             html: true,
         }).use(mdItExternalAnchor, {
-            domain: baseUrl,
+            domain: env.url,
             class: "external",
         })
     );
@@ -43,7 +43,7 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPlugin(eleventyNavigationPlugin);
     eleventyConfig.addPlugin(syntaxHighlight);
     eleventyConfig.addPlugin(pluginRss);
-    eleventyConfig.addPlugin(sitemap, { sitemap: { hostname: baseUrl } });
+    eleventyConfig.addPlugin(sitemap, { sitemap: { hostname: env.url } });
 
     // Filters
     // TODO: add dateTime -> https://github.com/Ewan-D/beginnersBase11ty/blob/main/.eleventy.js
@@ -54,8 +54,7 @@ module.exports = function (eleventyConfig) {
         "cssmin",
         (code) => new CleanCSS({}).minify(code).styles
     );
-    eleventyConfig.addFilter("assetUrl", (url) =>
-        isProd ? url + "?=v" + version : url
+    eleventyConfig.addFilter("assetUrl", (url) => url + env.hash);
     );
     eleventyConfig.addFilter("readableDate", (dateObj) =>
         dateObj.toISOString()
