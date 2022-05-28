@@ -46,7 +46,6 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPlugin(sitemap, { sitemap: { hostname: env.url } });
 
     // Filters
-    // TODO: add dateTime -> https://github.com/Ewan-D/beginnersBase11ty/blob/main/.eleventy.js
     eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
     eleventyConfig.addLiquidShortcode("image", imageShortcode);
     eleventyConfig.addJavaScriptFunction("image", imageShortcode);
@@ -55,12 +54,11 @@ module.exports = function (eleventyConfig) {
         (code) => new CleanCSS({}).minify(code).styles
     );
     eleventyConfig.addFilter("assetUrl", (url) => url + env.hash);
+    eleventyConfig.addFilter("toISOString", (dateString) =>
+        new Date(dateString).toISOString()
     );
-    eleventyConfig.addFilter("readableDate", (dateObj) =>
-        dateObj.toISOString()
-    );
-    eleventyConfig.addFilter("htmlDateString", (dateObj) =>
-        dateObj.toISOString()
+    eleventyConfig.addFilter("formatDate", (date, format) =>
+        dayjs(date).format(format)
     );
 
     // Minify

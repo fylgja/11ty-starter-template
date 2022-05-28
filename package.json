@@ -38,8 +38,7 @@
   ],
   "dependencies": {
     "dialog-polyfill": "^0.5.6",
-    "fylgja": "^1.1.5",
-    "markdown-it-external-anchor": "^1.0.0"
+    "fylgja": "^1.1.5"
   },
   "devDependencies": {
     "@11ty/eleventy": "^1.0.1",
@@ -55,7 +54,9 @@
     "@rollup/plugin-node-resolve": "^13.3.0",
     "clean-css": "^5.3.0",
     "cssnano": "^5.1.9",
+    "dayjs": "^1.11.2",
     "html-minifier": "^4.0.0",
+    "markdown-it-external-anchor": "^1.0.0",
     "postcss": "^8.4.14",
     "postcss-cli": "^9.1.0",
     "postcss-preset-env": "^7.6.0",

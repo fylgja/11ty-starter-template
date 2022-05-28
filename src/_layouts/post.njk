@@ -1,15 +1,28 @@
 ---
 layout: base
 style: {
-    post: ".post-layout { --container-size: 84ch; --container-padding-y: 3rem; }"
+    post: "
+        .post-layout {
+            --container-size: 84ch;
+            --container-padding-y: 3rem;
+        }
+
+        time {
+            color: var(--color-text-muted);
+        }
+    "
 }
 ---
 
 <article class="post-layout container my-6">
-    {% if title %}
-        <h1>{{ title }}</h1>
-    {% endif %}
-    <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
+    <div class="mb-8 md-mb-10">
+        {% if title %}
+            <h1 class="my-0">{{ title }}</h1>
+        {% endif %}
+        <time datetime="{{ page.date | toISOString }}">
+            {{ page.date | formatDate('DD MMMM YYYY') }}
+        </time>
+    </div>
 
     {{ content | safe }}
 
