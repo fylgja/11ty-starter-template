@@ -1,8 +1,8 @@
 {%- set pageTitle -%}{% if title %}{{ title }} - {% endif %}{{ meta.siteName }}{%- endset -%}
 {%- set pageDescription -%}{% if description %}{{ description }}{% else %}{{ meta.siteDescription }}{% endif %}{%- endset -%}
-{%- set pageSocialImg -%}{{ meta.url }}/images/{% if preview %}{{ preview }}{% else %}preview.png{% endif %}{%- endset -%}
-{%- set pageUrl -%}{{ meta.url }}{{ page.url }}{%- endset -%}
-{%- set pageCanonical -%}{{ meta.url }}{% if canonical %}{{ canonical }}{% else %}{{ page.url }}{% endif %}{%- endset -%}
+{%- set pageSocialImg -%}{{ env.url }}/images/{% if preview %}{{ preview }}{% else %}preview.png{% endif %}{%- endset -%}
+{%- set pageUrl -%}{{ env.url }}{{ page.url }}{%- endset -%}
+{%- set pageCanonical -%}{{ env.url }}{% if canonical %}{{ canonical }}{% else %}{{ page.url }}{% endif %}{%- endset -%}
 {%- set twitterCreator -%}{% if twitter %}{{ twitter }}{% else %}{{ meta.socials.twitter }}{% endif %}{%- endset -%}
 
 <head>
@@ -54,7 +54,7 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <link rel="canonical" href="{{pageCanonical}}" />
-    <link rel="alternate" type="application/rss+xml" title="{{ meta.title }}" href="{{ meta.url }}/feed.xml"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ meta.title }}" href="{{ env.url }}/feed.xml"/>
     <meta name="generator" content="{{ eleventy.generator }}">
 
     {# Webapp #}

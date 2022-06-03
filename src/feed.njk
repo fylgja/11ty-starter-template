@@ -6,15 +6,15 @@ eleventyExcludeFromCollections: true
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>{{ meta.siteName }}</title>
   <subtitle>{{ meta.siteDescription }}</subtitle>
-  <link href="{{ meta.url }}/components/"/>
-  <link href="{{ meta.url }}/feed.xml" rel="self"/>
+  <link href="{{ env.url }}/components/"/>
+  <link href="{{ env.url }}/feed.xml" rel="self"/>
   <updated>{{ collections.posts | rssLastUpdatedDate }}</updated>
-  <id>{{ meta.url }}/components/</id>
+  <id>{{ env.url }}/components/</id>
   <author>
     <name>{{ meta.author }}</name>
   </author>
   {%- for post in collections.components %}
-  {% set absolutePostUrl %}{{ post.url | url | absoluteUrl(meta.url) }}{% endset %}
+  {% set absolutePostUrl %}{{ post.url | url | absoluteUrl(env.url) }}{% endset %}
   <entry>
     <title>{{ post.data.title }}</title>
     <link href="{{ absolutePostUrl }}"/>
