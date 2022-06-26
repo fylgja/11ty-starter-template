@@ -1,6 +1,6 @@
 # Fylgja 11ty starter template
 
-![Netlify](https://img.shields.io/netlify/59a6ac0c-8b33-40dc-88eb-7549a1158e74?color=%235cebdf&style=flat-square)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/59a6ac0c-8b33-40dc-88eb-7549a1158e74/deploy-status)](https://app.netlify.com/sites/11ty-fylgja/deploys)
 ![License](https://img.shields.io/github/license/fylgja/11ty-starter-template?color=%23234&style=flat-square)
 
 11ty starter template build using Fylgja CSS.
