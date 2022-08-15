@@ -72,5 +72,8 @@ module.exports = function (eleventyConfig) {
             output: "_site",
             layouts: "_layouts",
         },
+        templateFormats: ["md", "njk", "11ty.js"],
+        markdownTemplateEngine: "njk",
+        htmlTemplateEngine: "njk",
     };
 };

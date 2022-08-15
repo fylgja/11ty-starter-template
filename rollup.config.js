@@ -1,13 +1,9 @@
 import commonjs from "@rollup/plugin-commonjs";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
-import { terser } from "rollup-plugin-terser";
+import { minify } from "rollup-plugin-esbuild";
 
 const isProd = process.env.NODE_ENV === "production";
-
-// *1: Force to false to avoid minification errors with the dialogPolyfill
-const terserOptions = { toplevel: false }; // *1
-
-const pluginsProd = [nodeResolve(), commonjs(), terser(terserOptions)];
+const pluginsProd = [nodeResolve(), commonjs(), minify()];
 const pluginsDev = [nodeResolve(), commonjs()];
 const plugins = isProd ? pluginsProd : pluginsDev;
 
