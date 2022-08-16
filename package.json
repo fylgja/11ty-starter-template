@@ -41,7 +41,7 @@
     "fylgja": "^1.2.5"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.1",
+    "@11ty/eleventy": "^1.0.2",
     "@11ty/eleventy-img": "^2.0.1",
     "@11ty/eleventy-navigation": "^0.3.4",
     "@11ty/eleventy-plugin-rss": "^1.2.0",
