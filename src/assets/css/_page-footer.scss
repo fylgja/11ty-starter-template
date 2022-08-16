@@ -1,16 +1,17 @@
-$footer-spacer: 2rem;
-$footer-sub-spacer: 1em;
-$footer-mq: 768px;
+@use "@fylgja/mq" as *;
+@use "@fylgja/sizes" as *;
 
 .page-footer {
-    --cols-size: 160px;
-    padding-top: $footer-spacer;
-    padding-bottom: $footer-spacer;
+    --selection-bg: hsl(0 0% 100% / 15%);
+    border-top-right-radius: $size-fluid-4;
+    border-top-left-radius: $size-fluid-4;
+    padding-top: $size-fluid-5;
+    padding-bottom: $size-fluid-4;
     background-color: var(--footer-bg, var(--color-theme));
     color: var(--footer-color, var(--color-on-theme));
 
-    @media (min-width: $footer-mq) {
-        --cols-size: 200px;
+    @media ($sm) and ($xl-max) {
+        --container-padding-x: #{$size-fluid-3};
     }
 
     :any-link {
@@ -23,10 +24,22 @@ $footer-mq: 768px;
         }
     }
 
-    > .sub-footer {
-        margin-top: $footer-spacer;
-        padding-top: $footer-sub-spacer;
-        padding-bottom: $footer-sub-spacer;
-        background-color: rgb(0 0 0 / 10%);
+    .auto-grid {
+        @media ($md) {
+            --cols: 1fr 220px 220px;
+            --gap: #{$size-fluid-4};
+        }
+    }
+
+    .col-main {
+        grid-column: 1 / -1;
+
+        @media ($md) {
+            grid-column: auto;
+        }
+    }
+
+    .copyright {
+        grid-column: 1 / -1;
     }
 }

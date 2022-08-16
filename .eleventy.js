@@ -45,10 +45,13 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPlugin(pluginRss);
     eleventyConfig.addPlugin(sitemap, { sitemap: { hostname: env.url } });
 
-    // Filters
+    // Shortcodes
     eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
     eleventyConfig.addLiquidShortcode("image", imageShortcode);
     eleventyConfig.addJavaScriptFunction("image", imageShortcode);
+    eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
+
+    // Filters
     eleventyConfig.addFilter(
         "cssmin",
         (code) => new CleanCSS({}).minify(code).styles
@@ -60,6 +63,7 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addFilter("formatDate", (date, format) =>
         dayjs(date).format(format)
     );
+    eleventyConfig.addFilter("stringify", (value) => JSON.stringify(value));
 
     // Minify
     if (isProd) {

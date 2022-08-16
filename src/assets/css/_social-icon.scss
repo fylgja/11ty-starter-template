@@ -1,0 +1,12 @@
+@use "@fylgja/transform/helper" as *;
+@use "@fylgja/transition/helper" as *;
+
+.social-icon {
+    @include transform;
+    @include transition(transform);
+
+    &:hover {
+        --sx: 1.1;
+        --sy: 1.1;
+    }
+}

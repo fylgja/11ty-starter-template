@@ -1,7 +1,8 @@
-@use "@fylgja/theme" with (
-    $color-theme: #3740ff
-);
+// @use "@fylgja/theme" with (
+//     $color-theme: #3740ff
+// );
 @use "base";
+@use "@fylgja/shadow/base" as shadow;
 
 // Components
 @use "@fylgja/aspect-ratio";
@@ -16,7 +17,6 @@
 @use "@fylgja/control";
 @use "@fylgja/details";
 @use "@fylgja/dialog";
-@use "@fylgja/elevation";
 @use "@fylgja/form";
 @use "@fylgja/input-group";
 @use "@fylgja/list";
@@ -26,8 +26,10 @@
 @use "@fylgja/scroll-slider";
 @use "@fylgja/section";
 @use "@fylgja/table";
+@use "./social-icon";
 
 // Template Sections
+@use "./page";
 @use "./page-header";
 @use "./page-footer";
 
@@ -40,4 +42,7 @@
 @use "@fylgja/stretched-link";
 @use "@fylgja/transform";
 @use "@fylgja/transition";
+@use "@fylgja/utilpack/defaults/spacers" with (
+    $enable-utilpack-negative-margins: true
+);
 @use "@fylgja/utilpack";

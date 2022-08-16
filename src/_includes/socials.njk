@@ -1,0 +1,9 @@
+<div class="socials flex flex-wrap mx-n2">
+    {% for name, url in meta.socials %}
+        <a href="{{ url }}" class="social-icon p-2" target="_blank">
+            <svg width="24" height="24" fill="currentColor">
+                <use href="/images/socials.svg#{{ name }}"></use>
+            </svg>
+        </a>
+    {% endfor %}
+</div>

@@ -3,6 +3,7 @@
   "permalink": "/blog/{{ page.fileSlug }}/",
   "tags": ["posts"],
   "order": 10,
+  "featured": "",
   "breadcrumbs": {
     "Blog": "/blog/"
   }

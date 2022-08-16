@@ -7,15 +7,34 @@ style: {
     home: "
     #page-hero {
         --height: 320px;
+        padding-block-start: clamp(3rem, 6vw, 6rem);
+        padding-block-end: clamp(3rem, 6vw, 6rem);
+        font-size: clamp(1rem, 1.5vw, 1.25rem);
+    }
+
+    #page-hero .title {
+        --h-font-size: clamp(2.5rem, 5vw, 5rem);
+        --h-font-weight: 600;
+    }
+
+    #page-hero .preview {
+        border-radius: 2rem;
+        overflow: hidden;
     }
     "
 }
 ---
 
-<section id="page-hero" class="section -theme flex flex-col justify-center mb-12">
-    <div class="container">
-        <h1 class="title">{{ meta.siteName }}</h1>
-        <div class="slogan">{{ meta.siteDescription }}</div>
+<section id="page-hero" class="mb-12" style="--bg: var(--color-theme-fade)">
+    <div class="container flex flex-col md-flex-row justify-center md-justify-between items-center">
+        <div>
+            <h1 class="title">{{ meta.siteName }}</h1>
+            <div class="slogan">{{ meta.siteDescription }}</div>
+            {% include "theme-switcher.njk"%}
+        </div>
+        <div class="preview mt-8 md-mt-0 md-ms-4 xl-ms-8">
+            {% image "https://placeimg.com/840/840/nature" %}
+        </div>
     </div>
 </section>
 
@@ -42,24 +61,6 @@ and comes packing with;
   - and more..
 - Offline page with service worker
 
-_For more information on what is also included,_
-_see the `package.json`_
-
-## How to use
-
-Simply click to big green button named **Use this template**,
-and you can start building your site,
-in your very own repo.
-
-## Config
-
-This 11ty package uses 1 file to handle most site specific information,
-you find it in `src/_data/meta.js`.
-
-Besides that this starter has a few configs for building the site,
-but there no needed to adjust them.
-
-If you do need to add more,
-the `eleventy.js` config and the [Eleventy site](https://www.11ty.dev/) are your best picks to checkout.
+_and more..._
 {% endrenderTemplate %}
 </div>

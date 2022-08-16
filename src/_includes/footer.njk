@@ -1,5 +1,22 @@
-<footer class="page-footer">
+<footer class="page-footer mt-8">
     <div class="container auto-grid">
+        <div class="col-main mb-8">
+            <p class="h1 weight-bold">Fylgja 11ty</p>
+            {% include "socials.njk" %}
+            <div class="hidden md-block mt-12">
+                {% include "copyright.njk" %}
+            </div>
+        </div>
         {% include "address.njk" %}
+        <nav>
+            <p class="h5">Theme</p>
+            <ul class="list-style -none space-y-2">
+                <li><a href="/getting-started/">Getting started</a></li>
+                <li><a href="http://fylgja.dev/" target="_blank" rel="noopener noreferrer">Visit the Fylgja docs</a></li>
+            </ul>
+        </nav>
+        <div class="md-hidden mt-4">
+            {% include "copyright.njk" %}
+        </div>
     </div>
 </footer>

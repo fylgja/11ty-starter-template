@@ -1,7 +1,10 @@
+@use "@fylgja/shadow" as *;
+@use "@fylgja/z-layer" as *;
+
 .page-header {
-    z-index: 6;
-    border-bottom: 1px solid rgb(0 0 0 / 10%);
-    background-color: var(--card-bg, #fff);
+    z-index: $layer-4;
+    background-color: var(--color-bg, #fff);
+    box-shadow: $shadow-1;
 }
 
 #offcanvas-menu {

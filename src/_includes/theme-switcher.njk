@@ -1,0 +1,42 @@
+<div class="theme-switcher">
+    <svg xmlns="http://www.w3.org/2000/svg" class="hidden">
+        <symbol id="color-pallet" viewBox="0 0 24 24" fill="none">
+            <g class="svg-color-pallet">
+                <circle cx="12" cy="12" r="12" fill="hsl(0 0% 80% / 50%)"/>
+                <path fill="var(--svg-color-pallet-bg, #fff)" d="M12 22c-1.3132 0-2.61358-.2587-3.82684-.7612-1.21325-.5026-2.31564-1.2391-3.24423-2.1677-.92858-.9286-1.66518-2.031-2.16773-3.2443C2.25866 14.6136 2 13.3132 2 12c0-1.3132.25866-2.61358.7612-3.82684.50255-1.21325 1.23915-2.31564 2.16773-3.24423.92859-.92858 2.03098-1.66518 3.24424-2.16773C9.38642 2.25866 10.6868 2 12 2v20Z"/>
+                <path fill="var(--svg-color-pallet-fg, #111)" d="M22 12c0 1.3132-.2587 2.6136-.7612 3.8268-.5026 1.2133-1.2391 2.3157-2.1677 3.2443-.9286.9286-2.031 1.6651-3.2443 2.1677C14.6136 21.7413 13.3132 22 12 22V12h10Z"/>
+                <path fill="var(--svg-color-pallet-theme)" d="M12 2c1.3132 0 2.6136.25866 3.8268.7612 1.2133.50255 2.3157 1.23915 3.2443 2.16773.9286.92859 1.6651 2.03098 2.1677 3.24424C21.7413 9.38642 22 10.6868 22 12H12V2Z"/>
+            </g>
+        </symbol>
+    </svg>
+    <div class="flex flex-wrap mt-8">
+        {% for name, data in themes %}
+            <button
+                class="btn"
+                style="--svg-color-pallet-theme: {{ data.theme }}; {{ "--svg-color-pallet-bg: #111; --svg-color-pallet-fg: #fff;" if name == "dark" else "" }}"
+                onClick="setThemeStyle({{ data.colors | stringify }})"
+            >
+                <svg width="24" height="24">
+                    <use href="#color-pallet"></use>
+                </svg>
+                <span class="ms-2 text-small">{{ data.name }}</span>
+            </button>
+        {% endfor %}
+    </div>
+</div>
+<style>
+    html[style] .btn.-theme {
+        --btn-focus-bg: var(--btn-theme-focus-bg);
+        --btn-active-bg: var(--btn-theme-active-bg);
+    }
+</style>
+<script>
+    function setThemeStyle(styles) {
+        document.documentElement.removeAttribute('style');
+        if (!styles) return;
+
+        for (const [prop, value] of Object.entries(styles)) {
+            document.documentElement.style.setProperty(prop, value);
+        }
+    }
+</script>

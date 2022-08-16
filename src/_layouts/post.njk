@@ -4,7 +4,6 @@ style: {
     post: "
         .post-layout {
             --container-size: 84ch;
-            --container-padding-y: 3rem;
         }
 
         time {
@@ -14,7 +13,15 @@ style: {
 }
 ---
 
-<article class="post-layout container my-6">
+<article class="post-layout container page-spacing">
+    {%- if featured -%}
+        <div class="page-banner aspect-ratio mb-6">
+            {% image featured, title %}
+        </div>
+    {%- endif -%}
+
+    {% include "breadcrumbs.njk" %}
+
     <div class="mb-8 md-mb-10">
         {% if title %}
             <h1 class="my-0">{{ title }}</h1>

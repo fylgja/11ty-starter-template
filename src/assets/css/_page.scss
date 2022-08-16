@@ -1,0 +1,12 @@
+@use "@fylgja/shadow" as *;
+@use "@fylgja/sizes" as *;
+
+.page-spacing {
+    margin-block-start: $size-fluid-3;
+    margin-block-end: $size-fluid-3;
+}
+
+.page-banner {
+    --aspect-ratio: 21/9;
+    border-radius: $size-8;
+}

@@ -7,15 +7,20 @@ eleventyNavigation:
     key: "Blog"
     order: 2
 style: {
-    blogIndex: "#blog-grid { --cols-size: 400px }"
+    blogIndex: "
+        #blog-grid { --cols-size: 400px }
+        #blog-grid .card-media { background-color: hsl(0 0% 0% / 5%) }
+    "
 }
 ---
 
 <div id="blog-grid" class="auto-grid">
 {%- for item in collections.posts -%}
     <a href="{{ item.url }}" class="card">
-        <div class="card-media">
-            {% image "https://placeimg.com/640/480/tech", item.data.title %}
+        <div class="card-media aspect-ratio">
+            {%- if item.data.featured -%}
+                {% image item.data.featured, item.data.title %}
+            {%- endif -%}
         </div>
         <div class="card-content">
         <h2 class="h5">{{ item.data.title }}</h2>
