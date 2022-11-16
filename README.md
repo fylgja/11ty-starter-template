@@ -23,7 +23,7 @@ This 11ty package uses 1 file to handle most site specific information,
 you find it in `src/_data/meta.js`.
 
 Besides that this starter has a few configs for building the site.
-The only thing you need to change is the site url found in `rc/_data/env.js`,
+The only thing you need to change is the site url found in `src/_data/env.js`,
 but if you do need to add more,
 the `eleventy.js` config and the [Eleventy site](https://www.11ty.dev/) are your best picks to checkout.
 
