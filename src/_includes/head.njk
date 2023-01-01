@@ -80,7 +80,12 @@
     {%- if style -%}
         <style>
             {% for name, item in style %}
-                {{ item | cssmin | safe }}
+                {%- if name.startsWith("inline") -%}
+                    {{ item | cssmin | safe }}
+                {%- else -%}
+                    {%- set inlineStyle -%}{% include item %}{%- endset -%}
+                    {{ inlineStyle | cssmin | safe }}
+                {%- endif -%}
             {% endfor %}
         </style>
     {%- endif -%}
