@@ -13,7 +13,7 @@
   },
   "scripts": {
     "debug": "DEBUG=* npx eleventy",
-    "clean": "rm -r _site/ || true",
+    "clean": "rm -rf _site/*",
     "test:css": "stylelint src/**/*.scss",
     "test": "npm run test:css",
     "start": "npm run dev",
