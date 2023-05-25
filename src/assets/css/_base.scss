@@ -1,5 +1,11 @@
 @use "@fylgja/base";
 @use "@fylgja/print";
+@use "@fylgja/shadow";
+
+:root {
+    --shadow-color: #{shadow.$shadow-color};
+    --shadow-weight: #{shadow.$shadow-weight};
+}
 
 body {
     font-size: clamp(1rem, 1vw, 1.125rem);
