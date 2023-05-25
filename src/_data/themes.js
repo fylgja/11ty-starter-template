@@ -17,8 +17,8 @@ module.exports = {
             "--color-text-muted": "hsl(0 0% 100% / 56%)",
             "--code-bg": "hsl(0 0% 20%)",
             "--code-color": "#fff",
-            "--shadow-weight": "10%",
-            "--shadow-color": "0 0% 0%",
+            "--shadow-weight": "25%",
+            "--shadow-color": "220 40% 2%",
         },
     },
     forest: {
